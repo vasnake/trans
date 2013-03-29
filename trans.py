@@ -174,7 +174,7 @@ def trans_codec(enc):
         return codecs.CodecInfo(encode, no_decode)
 #    else:
     try:
-        enc_name, table_name = enc.split('/', 1)
+        enc_name, table_name = enc.split(u'/', 1)
     except ValueError:
         return None
     if enc_name != 'trans':

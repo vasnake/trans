@@ -224,7 +224,7 @@ if PY2:
             return None
 
         if table_name not in trans.tables:
-            raise ValueError(u'Table "{0}" not found in tables!').format(table_name)
+            raise ValueError(u'Table "{0}" not found in tables!'.format(table_name))
 
         return codecs.CodecInfo(lambda i, e='strict': encode(i, e, table_name), no_decode)
 

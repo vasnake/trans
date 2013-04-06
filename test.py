@@ -1,4 +1,4 @@
-# coding: utf8
+# -*- mode: python; coding: utf-8 -*-
 
 import sys
 import unittest
@@ -152,5 +152,24 @@ class CodecTests(unittest.TestCase):
                             u'11-22---45--------')
 
     @py2
+    def test_my_table_uname(self):
+        trans.tables[u'имятаблицы'] = {u'1': u'2', u'2': u'3'}
+        self.assertEquals(u'1 2'.encode(u'trans/имятаблицы'), u'2_3')
+
+    @py2
+    def test_my_table_uname_exc(self):
+        trans.tables[u'Имя Таблицы'] = {u'1': u'2', u'2': u'3'}
+        self.assertRaises(ValueError, u'1 2'.encode, u'trans/Имя Таблицы')
+
+    @py2
     def test_encode_str_exc(self):
         self.assertRaises(TypeError, 'qwerty'.encode, 'trans')
+
+
+if PY2:
+    import sys
+    reload(sys)
+    sys.setdefaultencoding("UTF-8")
+
+if __name__ == '__main__':
+    unittest.main()
